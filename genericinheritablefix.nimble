@@ -2,11 +2,11 @@
 
 version       = "0.1.0"
 author        = "metagn"
-description   = "shim for {.inheritable.} to work on generic objects for all nim versions"
+description   = "shim for {.inheritable.} to work on generic objects for nim after 0.20"
 license       = "MIT"
 srcDir        = "src"
 
 
 # Dependencies
 
-requires "nim >= 0.9.0" # lower bound, not tested
+requires "nim >= 0.20.0"
