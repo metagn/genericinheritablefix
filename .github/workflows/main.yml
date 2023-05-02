@@ -1,0 +1,37 @@
+name: genericinheritablefix
+
+on:
+  push:
+    branches: [ "master" ]
+  pull_request:
+    branches: [ "master" ]
+
+  workflow_dispatch:
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        nim:
+          - '0.19.0'
+          - '1.0'
+          - '1.x'
+          - '1.2.x'
+          - '1.4.x'
+          - '1.6.x'
+          - 'stable'
+          - 'devel'
+    
+    name: test nim ${{ matrix.nim }}
+
+    steps:
+      - uses: actions/checkout@v3
+      - uses: jiro4989/setup-nim-action@v1
+        with:
+          nim-version: ${{ matrix.nim }}
+          repo-token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: run tests
+        run: nimble test
